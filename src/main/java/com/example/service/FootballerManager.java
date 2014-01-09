@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import com.example.domain.Footballer;
+import com.example.domain.Team;
 
 @Stateless
 public class FootballerManager {
@@ -14,8 +15,11 @@ public class FootballerManager {
     @PersistenceContext
     EntityManager entityManager;
     
-    public void addFootballer(Footballer footballer) {
+    public void addFootballer(Footballer footballer, long teamId) {
+        
+        Team team = entityManager.find(Team.class, teamId);
         footballer.setId(0);
+        footballer.setTeam(team);
         entityManager.persist(footballer);
     }
     

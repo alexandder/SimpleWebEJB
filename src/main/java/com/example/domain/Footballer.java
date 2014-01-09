@@ -1,9 +1,12 @@
 package com.example.domain;
 
+import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.validation.constraints.Size;
@@ -12,8 +15,10 @@ import javax.validation.constraints.Size;
 @NamedQueries({
     @NamedQuery(name = "footballer.all", query = "Select f from Footballer f")
 })
-public class Footballer {
-
+public class Footballer implements Serializable {
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
     @Size(min = 2, max = 25)
@@ -24,8 +29,10 @@ public class Footballer {
 
     private int goalsNumber;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @ManyToOne
+    @JoinColumn(name = "idTeam", nullable = true)
+    private Team team;
+    
     public long getId() {
         return id;
     }
@@ -56,5 +63,13 @@ public class Footballer {
 
     public void setGoalsNumber(int goalsNumber) {
         this.goalsNumber = goalsNumber;
+    }
+
+    public Team getTeam() {
+        return team;
+    }
+
+    public void setTeam(Team team) {
+        this.team = team;
     }
 }

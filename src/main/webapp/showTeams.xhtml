@@ -14,22 +14,18 @@ and open the template in the editor.
     <ui:define name="content">
         <h:form>
             <h:panelGrid columns="2">
-                <h:dataTable value="#{footballerFormBean.allFootballers}" var="item">
+                <h:dataTable value="#{teamFormBean.teams}" var="item">
                     <h:column>
-                        <f:facet name="header">#{msgs.name}</f:facet>
+                        <f:facet name="header">#{msgs.teamName}</f:facet>
                         <h:outputText value="#{item.name}" />
                     </h:column>
                     <h:column>
-                        <f:facet name="header">#{msgs.lastName}</f:facet>
-                        <h:outputText value="#{item.lastName}" />
+                        <f:facet name="header">#{msgs.city}</f:facet>
+                        <h:outputText value="#{item.city}" />
                     </h:column>
                     <h:column>
-                        <f:facet name="header">#{msgs.numberOfGoals}</f:facet>
-                        <h:outputText value="#{item.goalsNumber}" />
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">#{msgs.teamName}</f:facet>
-                        <h:outputText value="#{item.team.name}" />
+                        <f:facet name="header">#{msgs.establishedYear}</f:facet>
+                        <h:outputText value="#{item.establishedYear}" />
                     </h:column>
                 </h:dataTable>
             </h:panelGrid>

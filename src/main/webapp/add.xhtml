@@ -20,6 +20,10 @@ and open the template in the editor.
                 <h:inputText value="#{footballerFormBean.footballer.lastName}" />
                 <h:outputText value="#{msgs.numberOfGoals}"/>
                 <h:inputText value="#{footballerFormBean.footballer.goalsNumber}" />
+                <h:outputText value="#{msgs.teamName}" />
+                <h:selectOneMenu value="#{footballerFormBean.teamId}">
+                    <f:selectItems value="#{teamFormBean.teams}" var="team" itemValue="#{team.id}" itemLabel="#{team.name}" />
+                </h:selectOneMenu>
                 <h:commandButton value="#{msgs.addFootballer}" action="#{footballerFormBean.addFootballer}" />
             </h:panelGrid>
         </h:form>

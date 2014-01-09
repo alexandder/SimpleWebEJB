@@ -9,6 +9,7 @@ import javax.inject.Named;
 
 import com.example.domain.Footballer;
 import com.example.service.FootballerManager;
+import com.example.service.TeamManager;
 
 
 @SessionScoped
@@ -19,9 +20,14 @@ public class FootballerFormBean implements Serializable {
 
 	private Footballer footballer = new Footballer();
 	private ListDataModel<Footballer> footballers = new ListDataModel<>();
-	
+	private long teamId;
+        
+        
 	@Inject
 	private FootballerManager footballerManager;
+        
+        @Inject
+        private TeamManager teamManager;
 
 	public Footballer getFootballer() {
 		return footballer;
@@ -41,7 +47,7 @@ public class FootballerFormBean implements Serializable {
 	}
 	
 	public String addFootballer() {
-		footballerManager.addFootballer(footballer);
+		footballerManager.addFootballer(footballer, teamId);
 		return "show";
 	}
 	
@@ -50,5 +56,13 @@ public class FootballerFormBean implements Serializable {
 		footballerManager.deleteFootballer(toDelete);
 		return null;
 	}
+
+    public long getTeamId() {
+        return teamId;
+    }
+
+    public void setTeamId(long teamId) {
+        this.teamId = teamId;
+    }
 	
 }
