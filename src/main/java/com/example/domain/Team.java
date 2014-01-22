@@ -7,12 +7,16 @@
 package com.example.domain;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -20,7 +24,8 @@ import javax.persistence.NamedQuery;
  */
 @Entity
 @NamedQueries ({
-    @NamedQuery(name="team.all" ,query = "Select t from Team t")
+    @NamedQuery(name="team.all" ,query = "Select t from Team t"),
+    @NamedQuery(name="team.footballer" ,query = "Select f from Footballer f WHERE f.team.id=:idteam")
 })
 public class Team implements Serializable {
     
@@ -33,6 +38,13 @@ public class Team implements Serializable {
     private int establishedYear;
     
     private String city;
+    
+    @OneToOne
+    @JoinColumn(name="idCoach", nullable = true)
+    private Coach coach;
+    
+    @ManyToMany(mappedBy = "teams")
+    private List<Competition> competitions;
     
     public long getId() {
         return id;
@@ -64,8 +76,22 @@ public class Team implements Serializable {
 
     public void setCity(String city) {
         this.city = city;
+    }    
+
+    public List<Competition> getCompetitions() {
+        return competitions;
     }
-    
-    
+
+    public void setCompetitions(List<Competition> competitions) {
+        this.competitions = competitions;
+    }
+
+    public Coach getCoach() {
+        return coach;
+    }
+
+    public void setCoach(Coach coach) {
+        this.coach = coach;
+    }
     
 }

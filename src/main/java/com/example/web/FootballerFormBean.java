@@ -11,51 +11,59 @@ import com.example.domain.Footballer;
 import com.example.service.FootballerManager;
 import com.example.service.TeamManager;
 
-
 @SessionScoped
 @Named
 public class FootballerFormBean implements Serializable {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	private Footballer footballer = new Footballer();
-	private ListDataModel<Footballer> footballers = new ListDataModel<>();
-	private long teamId;
-        
-        
-	@Inject
-	private FootballerManager footballerManager;
-        
-        @Inject
-        private TeamManager teamManager;
+    private Footballer footballer = new Footballer();
+    private ListDataModel<Footballer> footballers = new ListDataModel<>();
+    private long teamId;
 
-	public Footballer getFootballer() {
-		return footballer;
-	}
+    @Inject
+    private FootballerManager footballerManager;
 
-	public void setFootballer(Footballer footballer) {
-		this.footballer = footballer;
-	}
+    @Inject
+    private TeamManager teamManager;
 
-	public ListDataModel<Footballer> getAllFootballers() {
-		footballers.setWrappedData(footballerManager.getAllFootballers());
-		return footballers;
-	}
+    public Footballer getFootballer() {
+        return footballer;
+    }
 
-	public void setFootballers(ListDataModel<Footballer> footballers) {
-		this.footballers = footballers;
-	}
-	
-	public String addFootballer() {
-		footballerManager.addFootballer(footballer, teamId);
-		return "show";
-	}
-	
-	public String deleteFootballer() {
-		Footballer toDelete = footballers.getRowData();
-		footballerManager.deleteFootballer(toDelete);
-		return null;
-	}
+    public void setFootballer(Footballer footballer) {
+        this.footballer = footballer;
+    }
+
+    public ListDataModel<Footballer> getAllFootballers() {
+        footballers.setWrappedData(footballerManager.getAllFootballers());
+        return footballers;
+    }
+
+    public void setFootballers(ListDataModel<Footballer> footballers) {
+        this.footballers = footballers;
+    }
+
+    public String addFootballer() {
+        footballerManager.addFootballer(footballer, teamId);
+        return "show";
+    }
+
+    public String deleteFootballer() {
+        Footballer toDelete = footballers.getRowData();
+        footballerManager.deleteFootballer(toDelete);
+        return null;
+    }
+    
+    public String updateFootballer() {
+        footballerManager.updateFootballer(footballer, teamId);
+        return "show";
+    }
+    
+    public String selectFootballer() {
+        footballer = footballers.getRowData();
+        return "editFootballer";
+    }
 
     public long getTeamId() {
         return teamId;
@@ -64,5 +72,5 @@ public class FootballerFormBean implements Serializable {
     public void setTeamId(long teamId) {
         this.teamId = teamId;
     }
-	
+
 }

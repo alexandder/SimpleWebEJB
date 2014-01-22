@@ -24,7 +24,8 @@ and open the template in the editor.
                 <h:selectOneMenu value="#{teamFormBean.coachId}">
                     <f:selectItems value="#{coachFormBean.allCoaches}" var="coach" itemValue="#{coach.id}" itemLabel="#{coach.lastName}" />
                 </h:selectOneMenu>
-                <h:commandButton value="#{msgs.addTeam}" action="#{teamFormBean.addTeam}" />
+                <h:commandButton value="#{msgs.updateTeam}" action="#{teamFormBean.updateTeam()}" />
+                <h:commandButton value="#{msgs.back}" action="show?faces-redirect=true" />
             </h:panelGrid>
         </h:form>
 

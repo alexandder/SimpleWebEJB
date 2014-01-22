@@ -15,16 +15,12 @@ and open the template in the editor.
         <h:form>
             <h:panelGrid columns="2">
                 <h:outputText value="#{msgs.name}"/>
-                <h:inputText value="#{teamFormBean.team.name}" />
-                <h:outputText value="#{msgs.city}"/>
-                <h:inputText value="#{teamFormBean.team.city}" />
-                <h:outputText value="#{msgs.establishedYear}"/>
-                <h:inputText value="#{teamFormBean.team.establishedYear}" />
-                <h:outputText value="#{msgs.coach}"/>
-                <h:selectOneMenu value="#{teamFormBean.coachId}">
-                    <f:selectItems value="#{coachFormBean.allCoaches}" var="coach" itemValue="#{coach.id}" itemLabel="#{coach.lastName}" />
-                </h:selectOneMenu>
-                <h:commandButton value="#{msgs.addTeam}" action="#{teamFormBean.addTeam}" />
+                <h:inputText value="#{coachFormBean.coach.name}" />
+                <h:outputText value="#{msgs.lastName}"/>
+                <h:inputText value="#{coachFormBean.coach.lastName}" />
+                <h:outputText value="#{msgs.nationality}"/>
+                <h:inputText value="#{coachFormBean.coach.nationality}" />
+                <h:commandButton value="#{msgs.addCoach}" action="#{coachFormBean.addCoach}" />
             </h:panelGrid>
         </h:form>
 

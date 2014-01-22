@@ -15,18 +15,16 @@ and open the template in the editor.
         <h:form>
             <h:panelGrid columns="2">
                 <h:outputText value="#{msgs.name}"/>
-                <h:inputText value="#{footballerFormBean.footballer.name}" />
+                <h:inputText value="#{coachFormBean.coach.name}" />
                 <h:outputText value="#{msgs.lastName}"/>
-                <h:inputText value="#{footballerFormBean.footballer.lastName}" />
-                <h:outputText value="#{msgs.numberOfGoals}"/>
-                <h:inputText value="#{footballerFormBean.footballer.goalsNumber}" />
-                <h:outputText value="#{msgs.teamName}" />
-                <h:selectOneMenu value="#{footballerFormBean.teamId}">
-                    <f:selectItems value="#{teamFormBean.teams}" var="team" itemValue="#{team.id}" itemLabel="#{team.name}" />
-                </h:selectOneMenu>
-                <h:commandButton value="#{msgs.addFootballer}" action="#{footballerFormBean.addFootballer}" />
+                <h:inputText value="#{coachFormBean.coach.lastName}" />
+                <h:outputText value="#{msgs.nationality}"/>
+                <h:inputText value="#{coachFormBean.coach.nationality}" />
+                <h:commandButton value="#{msgs.updateCoach}" action="#{coachFormBean.updateCoach}" />
+                <h:commandButton value="#{msgs.back}" action="show?faces-redirect=true" />
             </h:panelGrid>
         </h:form>
 
     </ui:define>
 </ui:composition>
+

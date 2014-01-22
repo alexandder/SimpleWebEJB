@@ -1,3 +1,9 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
 package com.example.domain;
 
 import java.io.Serializable;
@@ -5,35 +11,31 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.NamedNativeQueries;
+import javax.persistence.NamedNativeQuery;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.validation.constraints.Size;
+
+/**
+ *
+ * @author aleksander
+ */
 
 @Entity
 @NamedQueries({
-    @NamedQuery(name = "footballer.all", query = "Select f from Footballer f")
-    
+    @NamedQuery(name = "coach.all", query = "Select c from Coach c"),
+    @NamedQuery(name = "coach.team", query = "Select t from Team t where t.coach.id=:idcoach")
 })
-public class Footballer implements Serializable {
+
+public class Coach implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-
-    @Size(min = 2, max = 25)
     private String name;
-
-    @Size(min = 2, max = 25)
     private String lastName;
+    private String nationality;
 
-    private int goalsNumber;
-
-    @ManyToOne
-    @JoinColumn(name = "idTeam", nullable = true)
-    private Team team;
-    
     public long getId() {
         return id;
     }
@@ -58,19 +60,11 @@ public class Footballer implements Serializable {
         this.lastName = lastName;
     }
 
-    public int getGoalsNumber() {
-        return goalsNumber;
+    public String getNationality() {
+        return nationality;
     }
 
-    public void setGoalsNumber(int goalsNumber) {
-        this.goalsNumber = goalsNumber;
-    }
-
-    public Team getTeam() {
-        return team;
-    }
-
-    public void setTeam(Team team) {
-        this.team = team;
+    public void setNationality(String nationality) {
+        this.nationality = nationality;
     }
 }

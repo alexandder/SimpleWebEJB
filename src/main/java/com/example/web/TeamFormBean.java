@@ -25,6 +25,7 @@ public class TeamFormBean implements Serializable {
     
     private Team team = new Team();
     private ListDataModel<Team> teams = new ListDataModel<>();
+    private long coachId;
     
     @Inject
     TeamManager teamManager;
@@ -37,7 +38,7 @@ public class TeamFormBean implements Serializable {
         this.team = team;
     }
 
-    public ListDataModel<Team> getTeams() {
+    public ListDataModel<Team> getAllTeams() {
         teams.setWrappedData(teamManager.getAllTeams());
         return teams;
     }
@@ -47,8 +48,32 @@ public class TeamFormBean implements Serializable {
     }
     
     public String addTeam() {
-        teamManager.addTeam(team);
+        teamManager.addTeam(team, getCoachId());
         return "show";
+    }
+
+    public String deleteTeam() {
+        Team toDelete = teams.getRowData();
+        teamManager.deleteTeam(toDelete);
+        return null;
+    }
+    
+    public String updateTeam() {
+        teamManager.updateTeam(team, coachId);
+        return "show";
+    }
+    
+    public String selectTeam() {
+        team = teams.getRowData();
+        return "editTeam";
+    }
+    
+    public long getCoachId() {
+        return coachId;
+    }
+
+    public void setCoachId(long coachId) {
+        this.coachId = coachId;
     }
     
 }

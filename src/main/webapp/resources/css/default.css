@@ -38,3 +38,9 @@ body {
     border-radius: 20px;
     margin-left: 350px;
 }
+
+.tableheader { margin: 1em; border: 1px solid #ccc; }
+.rowtable
+{ padding: .3em;
+  text-align: center;
+  border: 1px solid #ccc; } 

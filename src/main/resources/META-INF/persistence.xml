@@ -20,6 +20,8 @@
 		<jta-data-source>jdbc/demoapps</jta-data-source>
 		
 		<properties>
+                    
+                        <property name="javax.persistence.schema-generation.database.action" value="create" />
 			<!-- Properties for Hibernate (default provider for JBoss AS) -->
 			<property name="hibernate.hbm2ddl.auto" value="create-drop" />
 			<property name="hibernate.show_sql" value="true" />
