@@ -46,6 +46,11 @@ public class CoachManager {
     public List<Coach> getAllCoaches() {
         return entityManager.createNamedQuery("coach.all").getResultList();
     }
+    
+    @SuppressWarnings("unchecked")
+    public List<Coach> getAvailableCoaches() {
+        return entityManager.createNamedQuery("coach.available").getResultList();
+    }
 
     public Team getTeamByCoach(Coach coach) {
         try {

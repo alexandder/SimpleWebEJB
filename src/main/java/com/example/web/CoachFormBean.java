@@ -26,7 +26,8 @@ public class CoachFormBean implements Serializable {
     
     private Coach coach = new Coach();
     private ListDataModel<Coach> coaches = new ListDataModel<>();
-
+    private ListDataModel<Coach> availableCoaches = new ListDataModel<>();
+    
     @Inject
     CoachManager coachManager;
     
@@ -63,8 +64,17 @@ public class CoachFormBean implements Serializable {
         coaches.setWrappedData(coachManager.getAllCoaches());
         return coaches;
     }
-
+ 
     public void setCoaches(ListDataModel<Coach> coaches) {
         this.coaches = coaches;
+    }
+
+    public ListDataModel<Coach> getAvailableCoaches() {
+        availableCoaches.setWrappedData(coachManager.getAvailableCoaches());
+        return availableCoaches;
+    }
+
+    public void setAvailableCoaches(ListDataModel<Coach> availableCoaches) {
+        this.availableCoaches = availableCoaches;
     }
 }

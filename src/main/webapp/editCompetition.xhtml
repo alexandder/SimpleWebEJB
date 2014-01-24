@@ -15,17 +15,15 @@ and open the template in the editor.
         <h:form>
             <h:panelGrid columns="2">
                 <h:outputText value="#{msgs.name}"/>
-                <h:inputText value="#{footballerFormBean.footballer.name}" />
-                <h:outputText value="#{msgs.lastName}"/>
-                <h:inputText value="#{footballerFormBean.footballer.lastName}" />
-                <h:outputText value="#{msgs.numberOfGoals}"/>
-                <h:inputText value="#{footballerFormBean.footballer.goalsNumber}" />
-                <h:outputText value="#{msgs.teamName}" />
-                <h:selectOneMenu value="#{footballerFormBean.teamId}">
+                <h:inputText value="#{competitionFormBean.competition.name}" />
+                <h:outputText value="#{msgs.type}"/>
+                <h:inputText value="#{competitionFormBean.competition.type}" />                
+                <h:outputText value="#{msgs.teams}" />
+                <h:selectManyMenu value="#{competitionFormBean.teamsId}">
                     <f:selectItems value="#{teamFormBean.allTeams}" var="team" itemValue="#{team.id}" itemLabel="#{team.name}" />
                     <f:selectItem itemLabel="---" noSelectionOption="true" />
-                </h:selectOneMenu>
-                <h:commandButton value="#{msgs.addFootballer}" action="#{footballerFormBean.addFootballer}" />
+                </h:selectManyMenu>
+                <h:commandButton value="#{msgs.updateCompetition}" action="#{competitionFormBean.updateCompetition()}" />
             </h:panelGrid>
         </h:form>
 

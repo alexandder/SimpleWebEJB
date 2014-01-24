@@ -11,8 +11,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedNativeQueries;
-import javax.persistence.NamedNativeQuery;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 
@@ -24,7 +22,8 @@ import javax.persistence.NamedQuery;
 @Entity
 @NamedQueries({
     @NamedQuery(name = "coach.all", query = "Select c from Coach c"),
-    @NamedQuery(name = "coach.team", query = "Select t from Team t where t.coach.id=:idcoach")
+    @NamedQuery(name = "coach.team", query = "Select t from Team t where t.coach.id=:idcoach"),
+    @NamedQuery(name = "coach.available", query = "Select c from Coach c WHERE c.id NOT IN (Select t.coach.id from Team t)")
 })
 
 public class Coach implements Serializable {

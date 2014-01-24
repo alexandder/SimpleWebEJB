@@ -3,13 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.example.web;
 
 import com.example.domain.Competition;
+import com.example.domain.Team;
 import com.example.service.CompetitionManager;
 import com.example.service.TeamManager;
 import java.io.Serializable;
+import java.util.List;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.model.ListDataModel;
 import javax.inject.Inject;
@@ -19,20 +20,38 @@ import javax.inject.Named;
  *
  * @author aleksander
  */
-
 @SessionScoped
 @Named
-public class CompetitionFormBean implements Serializable{
-    
+public class CompetitionFormBean implements Serializable {
+
     private Competition competition = new Competition();
-    private ListDataModel<Competition> competitions = new ListDataModel<Competition>();
+    private ListDataModel<Competition> competitions = new ListDataModel<>();
+    private ListDataModel<Team> availableTeams = new ListDataModel<>();
+    private Long[] teamsId;
     private long teamId;
-    
+    private Team team;
+
     @Inject
     private CompetitionManager competitionManager;
-    
+
     @Inject
     private TeamManager teamManager;
+
+    public String addCompetition() {
+        competitionManager.addCompetition(competition, teamsId);
+        return "showCompetitions";
+    }
+
+    public String deleteCompetition() {
+        Competition toDelete = competitions.getRowData();
+        competitionManager.deleteCompetition(toDelete);
+        return null;
+    }
+
+    public String addTeamsToCompetition() {
+
+        return null;
+    }
 
     public Competition getCompetition() {
         return competition;
@@ -43,19 +62,33 @@ public class CompetitionFormBean implements Serializable{
     }
 
     public ListDataModel<Competition> getAllCompetitions() {
+        competitions.setWrappedData(competitionManager.getAllCompetitions());
         return competitions;
+    }
+
+    public String removeFromLeague() {
+        Team toRemove = availableTeams.getRowData();
+        competitionManager.removeTeamFromCompetition(competition, toRemove);
+        return null;
+    }
+
+    public String updateCompetition() {
+        competitionManager.updateCompetition(competition, teamsId);
+        return "showCompetitions";
+    }
+
+    public String selectCompetition() {
+        competition = competitions.getRowData();
+        return "showTeams";
+    }
+
+    public String selectCompetitionForUpdate() {
+        competition = competitions.getRowData();
+        return "editCompetition";
     }
 
     public void setCompetitions(ListDataModel<Competition> competitions) {
         this.competitions = competitions;
-    }
-
-    public long getTeamId() {
-        return teamId;
-    }
-
-    public void setTeamId(long teamId) {
-        this.teamId = teamId;
     }
 
     public CompetitionManager getCompetitionManager() {
@@ -73,6 +106,38 @@ public class CompetitionFormBean implements Serializable{
     public void setTeamManager(TeamManager teamManager) {
         this.teamManager = teamManager;
     }
-    
-    
+
+    public Long[] getTeamsId() {
+        return teamsId;
+    }
+
+    public void setTeamsId(Long[] teamsId) {
+        this.teamsId = teamsId;
+    }
+
+    public long getTeamId() {
+        return teamId;
+    }
+
+    public void setTeamId(long teamId) {
+        this.teamId = teamId;
+    }
+
+    public Team getTeam() {
+        return team;
+    }
+
+    public void setTeam(Team team) {
+        this.team = team;
+    }
+
+    public ListDataModel<Team> getTeams() {
+        availableTeams.setWrappedData(teamManager.getAvailableTeams(competition));
+        return availableTeams;
+    }
+
+    public void setTeams(ListDataModel<Team> teams) {
+        this.availableTeams = teams;
+    }
+
 }

@@ -22,7 +22,9 @@ and open the template in the editor.
                 <h:inputText value="#{teamFormBean.team.establishedYear}" />
                 <h:outputText value="#{msgs.coach}"/>
                 <h:selectOneMenu value="#{teamFormBean.coachId}">
-                    <f:selectItems value="#{coachFormBean.allCoaches}" var="coach" itemValue="#{coach.id}" itemLabel="#{coach.lastName}" />
+                    <f:selectItem itemValue="#{teamFormBean.team.coach.id}" itemLabel="#{teamFormBean.team.coach.lastName}" />                    
+                    <f:selectItems value="#{coachFormBean.availableCoaches}" var="coach" itemValue="#{coach.id}" itemLabel="#{coach.lastName}" />
+                    <f:selectItem itemLabel="---" noSelectionOption="true" />
                 </h:selectOneMenu>
                 <h:commandButton value="#{msgs.updateTeam}" action="#{teamFormBean.updateTeam()}" />
                 <h:commandButton value="#{msgs.back}" action="show?faces-redirect=true" />

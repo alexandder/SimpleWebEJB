@@ -34,7 +34,7 @@ and open the template in the editor.
                     </h:column>
                     <h:column>
                         <f:facet name="header">#{msgs.deleteFootballer}</f:facet>
-                        <h:commandButton action="#{footballerFormBean.deleteFootballer}" value="#{msgs.deleteFootballer}"/>
+                        <h:commandButton action="#{footballerFormBean.deleteFootballer}" onclick="return confirm('Na pewno usunac?')" value="#{msgs.deleteFootballer}"/>
                     </h:column>
                     <h:column>
                         <f:facet name="header">#{msgs.updateFootballer}</f:facet>
@@ -62,11 +62,11 @@ and open the template in the editor.
                     </h:column>
                     <h:column>
                         <f:facet name="header">#{msgs.coach}</f:facet>
-                        <h:outputText value="#{item.coach.name}" />
+                        <h:outputText value="#{item.coach.lastName}" />
                     </h:column>
                     <h:column>
                         <f:facet name="header">#{msgs.deleteTeam}</f:facet>
-                        <h:commandButton action="#{teamFormBean.deleteTeam()}" value="#{msgs.deleteTeam}"/>
+                        <h:commandButton action="#{teamFormBean.deleteTeam()}" onclick="return confirm('Na pewno usunac?')" value="#{msgs.deleteTeam}"/>
                     </h:column>
                     <h:column>
                         <f:facet name="header">#{msgs.updateTeam}</f:facet>
@@ -94,7 +94,7 @@ and open the template in the editor.
                     </h:column>
                     <h:column>
                         <f:facet name="header">#{msgs.deleteCoach}</f:facet>
-                        <h:commandButton action="#{coachFormBean.deleteCoach()}" value="#{msgs.deleteCoach}"/>
+                        <h:commandButton action="#{coachFormBean.deleteCoach()}" onclick="return confirm('Na pewno usunac?')" value="#{msgs.deleteCoach}"/>
                     </h:column>
                     <h:column>
                         <f:facet name="header">#{msgs.updateCoach}</f:facet>

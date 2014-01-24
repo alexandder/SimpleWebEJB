@@ -25,7 +25,8 @@ import javax.persistence.OneToOne;
 @Entity
 @NamedQueries ({
     @NamedQuery(name="team.all" ,query = "Select t from Team t"),
-    @NamedQuery(name="team.footballer" ,query = "Select f from Footballer f WHERE f.team.id=:idteam")
+    @NamedQuery(name="team.footballer" ,query = "Select f from Footballer f WHERE f.team.id=:idteam"),
+    @NamedQuery(name="team.available", query = "Select t from Team t JOIN t.competitions c WHERE c.id<>:compId")
 })
 public class Team implements Serializable {
     

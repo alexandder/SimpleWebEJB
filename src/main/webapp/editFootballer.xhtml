@@ -22,6 +22,7 @@ and open the template in the editor.
                 <h:inputText value="#{footballerFormBean.footballer.goalsNumber}" />
                 <h:outputText value="#{msgs.teamName}" />
                 <h:selectOneMenu value="#{footballerFormBean.teamId}">
+                    <f:selectItem itemLabel="---" noSelectionOption="true" />
                     <f:selectItems value="#{teamFormBean.allTeams}" var="team" itemValue="#{team.id}" itemLabel="#{team.name}" />
                 </h:selectOneMenu>
                 <h:commandButton value="#{msgs.updateFootballer}" action="#{footballerFormBean.updateFootballer()}" />

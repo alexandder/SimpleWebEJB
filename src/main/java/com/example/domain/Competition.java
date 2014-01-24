@@ -22,6 +22,7 @@ import javax.validation.constraints.Size;
 @Entity
 @NamedQueries({
     @NamedQuery(name="competition.all", query = "Select c from Competition c")
+    
 })
 
 public class Competition implements Serializable {
